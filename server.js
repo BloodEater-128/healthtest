@@ -39,9 +39,11 @@ app.get("/api", (req, res) => {
 
 // ── 🔥 SERVE FRONTEND (VERY IMPORTANT) ─────
 // 👉 For Vite → use "dist"
+// Serve frontend
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("/*", (req, res) => {
+// ✅ Catch-all (IMPORTANT FIX)
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
